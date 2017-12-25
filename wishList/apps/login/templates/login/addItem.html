@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Add Item</title>
+    {% include './cdn.html' %}
+</head>
+
+<body>
+    <div id = "wrapper">
+    <h1>Create a new wish list item, {{ user.name }}!!!</h1>
+    {% if messages %}
+    <ul class="messages">
+            {% for message in messages %}
+            <li class="{{ message.tags }}" >{{ message }}</li>
+                {% endfor %}
+        </ul>
+        {%endif%}
+    <button class="btn btn-success"><a href="/dashboard">Home</a></button>
+    <button class="btn btn-warning"><a href="/logout">Logout</a></button>
+    <br>
+    <br>
+<div id="content">
+    <form action="/submitItem" method='POST'>
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="item">Item that you wish for:</label>
+            <input type="text" name="item" class="form-control" placeholder="Enter Item Name (must be at least 3 characters long)"/>
+        </div>
+        <button type="submit" class="btn btn-success">Add Item!</button>
+
+    </form>
+    
+</div>
+</div>
+</body>
+
+</html>
